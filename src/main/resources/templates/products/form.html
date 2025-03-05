@@ -1,0 +1,27 @@
+<!-- src/main/resources/templates/products/form.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Form</title>
+</head>
+<body>
+<h1>Product Form</h1>
+<form th:action="@{/products}" th:object="${product}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" />
+    </div>
+    <div>
+        <label for="category">Category:</label>
+        <select id="category" th:field="*{category.id}">
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+<a th:href="@{/products}">Back to list</a>
+</body>
+</html>
